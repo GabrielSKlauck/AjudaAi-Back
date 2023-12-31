@@ -41,8 +41,8 @@ namespace Rest.Repository
             string sql = "SELECT * FROM NGO WHERE Email = @Email AND Password = @Password";
             NGOEntity ngoLogin = await GetConnection().QueryFirstAsync<NGOEntity>(sql, ngo);
 
-            sql = "SELECT Id FROM NGO WHERE Email = @Email AND Password = @Password";
-            AdsRepository.NGO_Id = await Execute(sql, ngoLogin);
+            //sql = "SELECT Id FROM NGO WHERE Email = @Email AND Password = @Password";
+            //AdsRepository.NGO_Id = await Execute(sql, ngoLogin);
 
             return new NGOTokenDTO
             {
