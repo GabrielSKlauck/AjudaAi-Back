@@ -31,7 +31,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Add(AdsDTO ads)
         {
             await _adsRepository.Add(ads);
@@ -39,7 +39,7 @@ namespace Rest.Controllers
         }
 
         [HttpDelete]
-       // [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _adsRepository.Delete(id);
@@ -47,6 +47,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Update(AdsEntity ads)
         {
             await _adsRepository.Update(ads);

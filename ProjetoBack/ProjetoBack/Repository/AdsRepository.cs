@@ -12,8 +12,8 @@ namespace Rest.Repository
         public static int NGO_Id { get; set; }
         public async Task Add(AdsDTO ads)
         {
-            string sql = @"INSERT INTO ADS (Title, Description, Expires, Ngo_Id)
-                           VALUES(@Title, @Description, @Expires, @NGO_Id)";
+            string sql = @$"INSERT INTO ADS (Title, Description, Expires, Ngo_Id)
+                           VALUES(@Title, @Description, @Expires, {NGO_Id})";
             await Execute(sql, ads);
                
         }
@@ -32,11 +32,11 @@ namespace Rest.Repository
 
         public async Task Update(AdsEntity ads)
         {
-            string sql = @"UPDATE ADS SET 
+            string sql = @$"UPDATE ADS SET 
                             Title = @Title,
                             Description = @Description,
                             Expires = @Expires,
-                            Ngo_Id = @Ngo_Id
+                            Ngo_Id = {NGO_Id}
                             WHERE Id = @Id";
 
              await Execute(sql, ads);

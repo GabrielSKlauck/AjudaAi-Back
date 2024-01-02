@@ -8,6 +8,5 @@
 
         public DateTime Expires { get; set; }
 
-        public int Ngo_Id { get; set; }
     }
 }
