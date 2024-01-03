@@ -41,8 +41,7 @@ namespace Rest.Repository
             string sql = "SELECT * FROM NGO WHERE Email = @Email AND Password = @Password";
             NGOEntity ngoLogin = await GetConnection().QueryFirstAsync<NGOEntity>(sql, ngo);
 
-            sql = "SELECT Id FROM NGO WHERE Email = @Email AND Password = @Password";
-            AdsRepository.NGO_Id = await Execute(sql, ngoLogin);
+            AdsRepository.NGO_Id = ngoLogin.Id;
 
             return new NGOTokenDTO
             {
@@ -52,7 +51,7 @@ namespace Rest.Repository
         }
         public async Task Update(NGOEntity ngo)
         {
-            string sql = @"UPDATE NGO SET NgoName = @NgoName,
+            string sql = @$"UPDATE NGO SET NgoName = @NgoName,
                                           Description = @Description,
                                           Site = @Site, 
                                           HeadPerson = @HeadPerson, 
