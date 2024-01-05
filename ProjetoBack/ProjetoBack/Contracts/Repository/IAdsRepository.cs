@@ -6,12 +6,14 @@ namespace Rest.Contracts.Repository
 {
     public interface IAdsRepository
     {
-        public Task Add(AdsDTO ads);
+        Task Add(AdsDTO ads);
 
-        public Task<IEnumerable<AdsEntity>> Get();
+        Task<IEnumerable<AdsEntity>> Get();
 
-        public Task Update(AdsEntity ads);
+        Task<AdsEntity> GetById(int id);
 
-        public Task Delete(int id);
+        Task Update(AdsEntity ads);
+
+        Task Delete(int id);
     }
 }
