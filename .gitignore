@@ -9,3 +9,6 @@ ProjetoBack/obj
 *.vsidx
 *.lock
 *.dll
+ProjetoBack/ProjetoBack/bin/Debug/net6.0/ProjetoBack.dll
+*.pdb
+*.dll
