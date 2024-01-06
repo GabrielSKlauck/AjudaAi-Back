@@ -30,6 +30,12 @@ namespace Rest.Controllers
             return Ok(await _adsRepository.GetById(id));
         }
 
+        [HttpGet("NgoId/{id}")]
+        public async Task<IActionResult> GetByNgoId(int id)
+        {
+            return Ok(await _adsRepository.GetByNgoId(id));
+        }
+
         [HttpPost]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Add(AdsDTO ads)
@@ -53,5 +59,7 @@ namespace Rest.Controllers
             await _adsRepository.Update(ads);
             return Ok();
         }
+
+        
     }
 }
