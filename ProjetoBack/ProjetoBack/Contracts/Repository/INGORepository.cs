@@ -13,8 +13,12 @@ namespace Rest.Contracts.Repository
 
         Task <NGOEntity> GetById(int id);
 
+        Task<IEnumerable<NGOEntity>> GetByCausesId(int id);
+
         Task Delete(int id);
 
         Task<NGOTokenDTO> Login(NGOLoginDTO ngo);
+
+        
     }
 }
