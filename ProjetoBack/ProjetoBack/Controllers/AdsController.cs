@@ -30,6 +30,12 @@ namespace Rest.Controllers
             return Ok(await _adsRepository.GetById(id));
         }
 
+        [HttpGet("CausesId/{id}")]
+        public async Task<IActionResult> GetByCausesId(int id)
+        {
+            return Ok(await _adsRepository.GetByCausesId(id));
+        }
+
         [HttpPost]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Add(AdsDTO ads)

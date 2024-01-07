@@ -12,6 +12,8 @@ namespace Rest.Contracts.Repository
 
         Task<AdsEntity> GetById(int id);
 
+        Task<IEnumerable<AdsEntity>> GetByCausesId(int id);
+
         Task Update(AdsEntity ads);
 
         Task Delete(int id);
