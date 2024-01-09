@@ -59,5 +59,7 @@ namespace Rest.Controllers
             await _adsRepository.Update(ads);
             return Ok();
         }
+
+        
     }
 }
