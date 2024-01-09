@@ -45,6 +45,8 @@ namespace Rest.Repository
             string sql = "SELECT * FROM USER WHERE Email = @Email AND Password = @Password";
             UserEntity userLogin = await GetConnection().QueryFirstAsync<UserEntity>(sql, user);
 
+            UserAdsRepository.UserId = userLogin.Id;
+
             return new UserTokenDTO
             {
                 Token = Authentication.GenerateTokenUser(userLogin),
