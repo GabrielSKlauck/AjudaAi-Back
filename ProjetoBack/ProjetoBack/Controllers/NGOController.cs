@@ -40,7 +40,7 @@ namespace Rest.Controllers
            return Ok(await _ngoRepository.Get());                   
         }
 
-        [Authorize(Roles = "admin, default")]
+        [Authorize(Roles = "admin, defoult")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
