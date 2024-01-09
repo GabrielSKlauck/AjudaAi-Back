@@ -13,5 +13,7 @@ namespace Rest.Contracts.Repository
         Task Update(UserEntity user);
 
         Task Delete(int id);
+
+        Task<UserTokenDTO> Login(UserLoginDTO user);
     }
 }
