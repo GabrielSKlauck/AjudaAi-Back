@@ -26,6 +26,10 @@ builder.Services.AddTransient<ICausesRepository, CausesRepository>();
 
 builder.Services.AddTransient<IAdsRepository, AdsRepository>();
 
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+
+builder.Services.AddTransient<IUserAdsRepository, UserAdsRepository>();
+
 builder.Services.AddCors();
 
 var key = Encoding.ASCII.GetBytes(Configuration.JWTSecret);
