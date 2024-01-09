@@ -30,6 +30,12 @@ namespace Rest.Repository
             return await GetConnection().QueryAsync<NGOEntity>(sql);
         }
 
+        public async Task<IEnumerable<NGOEntity>> GetByCausesId(int id)
+        {
+            string sql = "SELECT * FROM NGO WHERE CAUSESID = @id";
+            return await GetConnection().QueryAsync<NGOEntity>(sql, new { id });
+        }
+
         public async Task<NGOEntity> GetById(int id)
         {
             string sql = "SELECT * FROM NGO WHERE Id = @id";

@@ -30,10 +30,10 @@ namespace Rest.Controllers
             return Ok(await _adsRepository.GetById(id));
         }
 
-        [HttpGet("NgoId/{id}")]
-        public async Task<IActionResult> GetByNgoId(int id)
+        [HttpGet("CausesId/{id}")]
+        public async Task<IActionResult> GetByCausesId(int id)
         {
-            return Ok(await _adsRepository.GetByNgoId(id));
+            return Ok(await _adsRepository.GetByCausesId(id));
         }
 
         [HttpPost]

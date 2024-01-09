@@ -29,6 +29,12 @@ namespace Rest.Repository
             string sql = "SELECT * FROM ADS";
             return await GetConnection().QueryAsync<AdsEntity>(sql);
         }
+     
+        public async Task<IEnumerable<AdsEntity>> GetByCausesId(int id)
+        {
+            string sql = "SELECT A.* FROM ADS A, NGO N WHERE N.CausesId = @id AND N.id = A.ngo_id";
+            return await GetConnection().QueryAsync<AdsEntity>(sql, new {id});    
+        }
 
         public async Task Update(AdsEntity ads)
         {
@@ -47,7 +53,6 @@ namespace Rest.Repository
             string sql = "SELECT * FROM ADS WHERE Id = @id";
             return await GetConnection().QueryFirstAsync<AdsEntity>(sql, new { id });
         }
-
         public async Task<IEnumerable<AdsEntity>> GetByNgoId(int id)
         {
             string sql = "SELECT * FROM ADS WHERE NGO_ID = @id";
