@@ -1,9 +1,12 @@
 using Dapper;
 using Infrastructure;
+using ProjetoBack.Infrastructure;
 using Rest.Contracts.Repository;
 using Rest.DTO;
 using Rest.Entity;
 using Rest.Infrastructure;
+using System.Security.Cryptography;
+using System.Security.Policy;
 
 namespace Rest.Repository
 {
@@ -12,8 +15,11 @@ namespace Rest.Repository
     {
         public async Task Add(UserDTO user)
         {
-            string sql = @"INSERT INTO USER (Name, Email, Password, Role, CityId)
-                        VALUES(@Name, @Email, @Password, @Role, @CityId)";
+            var Cryptography = new Cryptography(SHA512.Create());       
+            string senha = Cryptography.CriptografarSenha(user.Password);
+
+            string sql = @$"INSERT INTO USER (Name, Email, Password, Role, CityId)
+                        VALUES(@Name, @Email, '{senha}', @Role, @CityId)";
             await Execute(sql, user);
         }
 
