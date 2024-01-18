@@ -5,6 +5,8 @@ using Rest.Infrastructure;
 using Rest.DTO;
 using Rest.Entity;
 using Infrastructure;
+using System.Security.Cryptography;
+using ProjetoBack.Infrastructure;
 
 namespace Rest.Repository
 {
@@ -13,8 +15,11 @@ namespace Rest.Repository
 
         public async Task Add(NGODTO ngo)
         {
-            string sql = @"INSERT INTO NGO(NgoName, Description, Site, HeadPerson, Telephone, Email, Password, Role, CityId, CausesId)
-                            VALUES(@NgoName, @Description, @Site, @HeadPerson, @Telephone, @Email, @Password, @Role, @CityId, @CausesId)";
+            var Cryptography = new Cryptography(SHA512.Create());
+            string senha = Cryptography.CriptografarSenha(ngo.Password);
+
+            string sql = @$"INSERT INTO NGO(NgoName, Description, Site, HeadPerson, Telephone, Email, Password, Role, CityId, CausesId)
+                            VALUES(@NgoName, @Description, @Site, @HeadPerson, @Telephone, @Email, '{senha}', @Role, @CityId, @CausesId)";
             await Execute(sql, ngo);
         }
 
