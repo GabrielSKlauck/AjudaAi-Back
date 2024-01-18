@@ -18,7 +18,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         
         public async Task<IActionResult> Add(NGODTO ngo)
         {
