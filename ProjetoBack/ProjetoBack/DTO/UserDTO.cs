@@ -12,6 +12,8 @@
 
         public int CityId { get; set; }
 
+        public int CityStateId { get; set; }
+
 
 
     }

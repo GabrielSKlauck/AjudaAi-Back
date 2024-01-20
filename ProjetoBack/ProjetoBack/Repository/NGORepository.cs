@@ -18,8 +18,8 @@ namespace Rest.Repository
             var Cryptography = new Cryptography(SHA512.Create());
             string senha = Cryptography.CriptografarSenha(ngo.Password);
 
-            string sql = @$"INSERT INTO NGO(NgoName, Description, Site, HeadPerson, Telephone, Email, Password, Role, CityId, CausesId)
-                            VALUES(@NgoName, @Description, @Site, @HeadPerson, @Telephone, @Email, '{senha}', @Role, @CityId, @CausesId)";
+            string sql = @$"INSERT INTO NGO(NgoName, Description, Site, HeadPerson, Telephone, Email, Password, Role, CausesId, CityId, CityStateId)
+                            VALUES(@NgoName, @Description, @Site, @HeadPerson, @Telephone, @Email, '{senha}', @Role, @CausesId, @CityId, @CityStateId)";
             await Execute(sql, ngo);
         }
 
@@ -69,9 +69,10 @@ namespace Rest.Repository
                                           Telephone = @Telephone, 
                                           Email = @Email, 
                                           Password = @Password, 
-                                          Role = @Role,
-                                          CityId = @CityId, 
-                                          CausesId = @CausesId
+                                          Role = @Role,                                           
+                                          CausesId = @CausesId,
+                                          CityId = @CityId,
+                                          CityStateId = @CityStateId
                                           WHERE Id = @Id";
             await Execute(sql, ngo);
         }
