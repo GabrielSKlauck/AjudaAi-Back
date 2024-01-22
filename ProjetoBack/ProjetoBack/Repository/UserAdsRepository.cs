@@ -11,13 +11,13 @@ namespace Rest.Repository
         public static int UserId { get; set; }
         public async Task Add(UserAdsDTO user)
         {
-            string sql = $"INSERT INTO USER_ADS (UserId, AdsId) VALUES ({UserId}, @AdsId)";
+            string sql = $"INSERT INTO USER_ADS (UserId, AdsId) VALUES (@UserId, @AdsId)";
             await Execute(sql,user);
         }
 
         public async Task Delete(int adsId)
         {
-            string sql = $"DELETE FROM USER_ADS WHERE UserId = {UserId} AND AdsId = @adsId";
+            string sql = $"DELETE FROM USER_ADS WHERE UserId = @UserId AND AdsId = @adsId";
             await Execute(sql, new { adsId});
         }
 

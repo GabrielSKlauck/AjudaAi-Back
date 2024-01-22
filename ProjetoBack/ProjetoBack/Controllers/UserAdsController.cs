@@ -18,7 +18,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "voluntario")]
+        //[Authorize(Roles = "voluntario")]
         public async Task<IActionResult> Add(UserAdsDTO user)
         {
             await _userAdsRepository.Add(user);
