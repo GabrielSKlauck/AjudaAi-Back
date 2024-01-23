@@ -49,6 +49,9 @@ namespace Rest.Repository
 
         public async Task<NGOTokenDTO> Login(NGOLoginDTO ngo)
         {
+            var Cryptography = new Cryptography(SHA512.Create());
+            ngo.Password = Cryptography.CriptografarSenha(ngo.Password);
+
             string sql = "SELECT * FROM NGO WHERE Email = @Email AND Password = @Password";
             NGOEntity ngoLogin = await GetConnection().QueryFirstAsync<NGOEntity>(sql, ngo);
 

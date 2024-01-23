@@ -5,7 +5,7 @@ namespace Rest.Infrastructure
 {
     public class Connection
     {
-        protected string connectionString = "Server=localhost;Database=bancopi;User=root;Password=root;";
+        protected string connectionString = "Server=localhost;Database=ajudaai;User=root;Password=root;";
         protected MySqlConnection GetConnection()
         {
             return new MySqlConnection(connectionString);
