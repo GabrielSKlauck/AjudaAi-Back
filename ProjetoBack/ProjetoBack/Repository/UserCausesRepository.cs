@@ -1,10 +1,12 @@
 ﻿using Dapper;
+using Microsoft.VisualBasic;
 using ProjetoBack.Contracts.Repository;
 using ProjetoBack.DTO;
 using Rest.Contracts.Repository;
 using Rest.DTO;
 using Rest.Entity;
 using Rest.Infrastructure;
+using System.Collections.Generic;
 
 namespace ProjetoBack.Repository
 {
@@ -26,13 +28,6 @@ namespace ProjetoBack.Repository
         {
             string sql = "select ID, Name from user_causes uc, causes c where uc.userId = @id and uc.CausesId = c.id";
             return await GetConnection().QueryAsync<CausesEntity>(sql, new {id});
-        }
-
-        public async Task Update(UserCausesDTO user)
-        {
-            string sql = "DELETE FROM USER_CAUSES WHERE UserId = @UserId AND CausesId = @CausesId";
-            await Execute(sql, user);
-            string sql = 
-        }
+        }        
     }
 }
