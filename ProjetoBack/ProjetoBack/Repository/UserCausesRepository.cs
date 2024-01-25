@@ -28,6 +28,6 @@ namespace ProjetoBack.Repository
         {
             string sql = "select ID, Name from user_causes uc, causes c where uc.userId = @id and uc.CausesId = c.id";
             return await GetConnection().QueryAsync<CausesEntity>(sql, new {id});
-        }        
+        }
     }
 }
