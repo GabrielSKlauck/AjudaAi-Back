@@ -29,13 +29,6 @@ namespace ProjetoBack.Controllers
             return Ok(await _userCausesRepository.GetUserCausesById(id));
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update(UserCausesDTO user)
-        {
-            await _userCausesRepository.Update(user);
-            return Ok();
-        }
-
         [HttpDelete]
         public async Task<IActionResult> Delete(UserCausesDTO user)
         {
