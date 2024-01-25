@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rest.Contracts.Repository;
 using Rest.DTO;
+using Rest.Entity;
 using Rest.Repository;
 
 namespace Rest.Controllers
@@ -37,6 +38,12 @@ namespace Rest.Controllers
         {
             await _userAdsRepository.Delete(adsId);
             return Ok();
+        }
+
+        [HttpPost("userIdAdsId")]
+        public async Task<IActionResult> GetByUserIdAdsId(UserAdsEntity userAds)
+        {
+            return Ok(await _userAdsRepository.GetByUserIdAdsId(userAds));
         }
     }
 }
