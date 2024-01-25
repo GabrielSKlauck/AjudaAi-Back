@@ -26,5 +26,11 @@ namespace Rest.Repository
             string sql = "SELECT * FROM USER_ADS";
             return await GetConnection().QueryAsync<UserAdsEntity>(sql);
         }
+
+        public async Task<IEnumerable<UserAdsEntity>> GetByUserIdAdsId(UserAdsEntity userAds)
+        {
+            string sql = "SELECT * FROM USER_ADS WHERE UserId = @UserId AND AdsId = @AdsId";
+            return await GetConnection().QueryAsync<UserAdsEntity>(sql, userAds);
+        }
     }
 }

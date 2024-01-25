@@ -11,6 +11,8 @@ namespace Rest.Contracts.Repository
         
         Task Delete(int AdsId);
 
+        Task<IEnumerable<UserAdsEntity>> GetByUserIdAdsId(UserAdsEntity userAds);
+
         
     }
 }
