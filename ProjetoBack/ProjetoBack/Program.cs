@@ -9,6 +9,7 @@ using System.Text;
 using Configuration = Rest.Infrastructure.Configuration;
 using ProjetoBack.Contracts.Repository;
 using ProjetoBack.Repository;
+using ProjetoBack.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,8 @@ builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserAdsRepository, UserAdsRepository>();
 
 builder.Services.AddTransient<IUserCausesRepository, UserCausesRepository>();
+
+builder.Services.AddTransient<INgoImagesRepository, NgoImagesRepository>();
 
 builder.Services.AddCors();
 
