@@ -29,7 +29,7 @@ namespace ProjetoBack.Repository
 
         public async Task Update(NgoImagesEntity image)
         {
-            string sql = @"UPDATE TABLE NGO_IMAGES SET IMAGE = @IMAGE
+            string sql = @"UPDATE NGO_IMAGES SET IMAGE = @IMAGE
                                                         WHERE ID = @ID AND
                                                         NGOID = @NGOID";
             await Execute(sql, image);
