@@ -37,6 +37,8 @@ builder.Services.AddTransient<IUserCausesRepository, UserCausesRepository>();
 
 builder.Services.AddTransient<INgoImagesRepository, NgoImagesRepository>();
 
+builder.Services.AddTransient<IAchievementsRepository, AchievementRepository>();
+
 builder.Services.AddCors();
 
 var key = Encoding.ASCII.GetBytes(Configuration.JWTSecret);
