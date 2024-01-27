@@ -30,7 +30,7 @@ namespace ProjetoBack.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("{ngoId}")]
         public async Task<IActionResult> Get(int ngoId)
         {
             return Ok(await _ngoImagesRepository.Get(ngoId));
