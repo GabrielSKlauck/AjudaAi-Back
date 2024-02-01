@@ -9,13 +9,20 @@ namespace ProjetoBack.Infrastructure
 {
         public class Email
         {
+        //COMO USAR A CLASSE
+        //Instancie um objeto
+        //Email email = new Email("help.ajudaai.suporte@gmail.com", "GGJSNAjudaAi123");
+
+        //chame o metodo
+        //email.SendEmail(new List<string> { "email alvo" }, "titulo", "corpo");
+
             public string Provedor { get; private set; }
             public string Username { get; private set; }
             public string Password { get; private set; }
 
-            public Email(string provedor, string username, string password)
+            public Email(string username, string password)
             {
-                Provedor = provedor;
+                Provedor = "smtp.gmail.com";
                 Username = username;
                 Password = password;
             }
@@ -50,21 +57,28 @@ namespace ProjetoBack.Infrastructure
             private bool ValidateEmail(string email)
             {
                 Regex expression = new Regex(@"\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}");
-                if (expression.IsMatch(email))
-                    return true;
-
+            if (expression.IsMatch(email))
+            {
+                return true;
+            }
+            else
+            {
                 return false;
+            }
+                    
+
+                
             }
 
             private void SendEmailBySmtp(MailMessage message)
             {
-                SmtpClient smtpClient = new SmtpClient("smtp.office365.com");
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
                 smtpClient.Host = Provedor;
-                smtpClient.Port = 587;
+                smtpClient.Port = 587;             
                 smtpClient.EnableSsl = true;           
                 smtpClient.Timeout = 50000;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential(Username, Password);
+                smtpClient.Credentials = new NetworkCredential(Username, "crms vwpo igix bwmc");
                 smtpClient.Send(message);
                 smtpClient.Dispose();
             }
