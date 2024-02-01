@@ -11,6 +11,14 @@ using ProjetoBack.Contracts.Repository;
 using ProjetoBack.Repository;
 using ProjetoBack.Infrastructure;
 
+//smtp.office365.com
+//smtp-mail.outlook.com
+var email = new Email("smtp.office365.com", "ajudaai.suporte@outlook.com", "GGJSNAjudaAi123");
+
+email.SendEmail(new List<string> { "usousualpo@gmail.com" }, "Teste de envio", "Corpo do envio");
+
+EmailDois.SendEmail("help.ajudaai.suporte@gmail.com", "usousualpo@gmail.com", "Teste", "Teste");
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
