@@ -60,8 +60,7 @@ namespace Rest.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("SendTokenToEmail")]
+        [HttpPost("SendTokenToEmail/{email}")]       
         public async Task<IActionResult> SendTokenToEmail(string email)
         {
             try
@@ -74,13 +73,14 @@ namespace Rest.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("SendToken")]
-        public async Task<IActionResult> CheckToken(int token)
+        [HttpPost("SendToken/{token}")]
+        public async Task<IActionResult> CheckToken(string token)
         {
-            await _userRepository.CheckToken(token);
+            int tokenNum = (int)Int64.Parse(token);
+            await _userRepository.CheckToken(tokenNum);
             if (tokenValidado)
             {
+                
                 return Ok();
             }
             else
@@ -89,8 +89,7 @@ namespace Rest.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("ChangePassword")]
+        [HttpPost("ChangePassword/{senha}")]       
         public async Task<IActionResult> ChangePassword(string senha)
         {
             await _userRepository.ChangePassword(senha);

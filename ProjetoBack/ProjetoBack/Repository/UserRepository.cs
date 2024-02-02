@@ -85,8 +85,7 @@ namespace Rest.Repository
         public async Task CheckToken(int token)
         {
             if (token == savedToken)
-            {
-                
+            {               
                 UserController.tokenValidado = true;
             }
             else
