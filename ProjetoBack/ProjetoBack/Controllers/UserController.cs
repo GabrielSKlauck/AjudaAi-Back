@@ -12,6 +12,7 @@ namespace Rest.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        public static bool tokenValidado;
 
         public UserController(IUserRepository userRepository)
         {
@@ -57,6 +58,42 @@ namespace Rest.Controllers
             {
                 return Unauthorized("Usuario ou senha invalidos");
             }
+        }
+
+        [HttpPost("SendTokenToEmail/{email}")]       
+        public async Task<IActionResult> SendTokenToEmail(string email)
+        {
+            try
+            {
+                await _userRepository.SendTokenToEmail(email);
+                return Ok();
+            }catch (Exception e)
+            {
+                return Unauthorized("Email invalido");
+            }
+        }
+
+        [HttpPost("SendToken/{token}")]
+        public async Task<IActionResult> CheckToken(string token)
+        {
+            int tokenNum = (int)Int64.Parse(token);
+            await _userRepository.CheckToken(tokenNum);
+            if (tokenValidado)
+            {
+                
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("ChangePassword/{senha}")]       
+        public async Task<IActionResult> ChangePassword(string senha)
+        {
+            await _userRepository.ChangePassword(senha);
+            return Ok();
         }
     }
 }
