@@ -11,6 +11,7 @@ using ProjetoBack.Contracts.Repository;
 using ProjetoBack.Repository;
 using ProjetoBack.Infrastructure;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

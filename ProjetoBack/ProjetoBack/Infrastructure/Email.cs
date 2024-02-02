@@ -20,11 +20,11 @@ namespace ProjetoBack.Infrastructure
             public string Username { get; private set; }
             public string Password { get; private set; }
 
-            public Email(string username, string password)
+            public Email()
             {
                 Provedor = "smtp.gmail.com";
-                Username = username;
-                Password = password;
+                Username = "help.ajudaai.suporte@gmail.com";
+                Password = "GGJSNAjudaAi123";
             }
 
             public void SendEmail(List<string> emailsTo, string subject, string body)

@@ -15,5 +15,11 @@ namespace Rest.Contracts.Repository
         Task Delete(int id);
 
         Task<UserTokenDTO> Login(UserLoginDTO user);
+
+        Task SendTokenToEmail(string email);
+
+        Task CheckToken(int token);
+
+        Task ChangePassword(string senha);
     }
 }
