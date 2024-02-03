@@ -11,7 +11,7 @@ namespace ProjetoBack.Infrastructure
         {
         //COMO USAR A CLASSE
         //Instancie um objeto
-        //Email email = new Email("help.ajudaai.suporte@gmail.com", "GGJSNAjudaAi123");
+        //Email email = new Email();
 
         //chame o metodo
         //email.SendEmail(new List<string> { "email alvo" }, "titulo", "corpo");
