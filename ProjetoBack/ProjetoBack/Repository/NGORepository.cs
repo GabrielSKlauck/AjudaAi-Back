@@ -47,6 +47,12 @@ namespace Rest.Repository
             return await GetConnection().QueryFirstAsync<NGOEntity>(sql, new { id });
         }
 
+        public async Task<IEnumerable<NGOEntity>> GetByName(string NgoName)
+        {
+            string sql = $"SELECT * FROM NGO WHERE NGONAME LIKE '%{NgoName}%'";
+            return await GetConnection().QueryAsync<NGOEntity>(sql, new { NgoName });
+        }
+
         public async Task<NGOTokenDTO> Login(NGOLoginDTO ngo)
         {
             var Cryptography = new Cryptography(SHA512.Create());

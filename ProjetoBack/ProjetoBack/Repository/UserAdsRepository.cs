@@ -26,16 +26,20 @@ namespace Rest.Repository
             sql = $"SELECT * FROM NGO WHERE NGO.id = {ads.Ngo_Id}";
             NGOEntity ngo = await GetConnection().QueryFirstAsync<NGOEntity>(sql);
 
+
+            string dataFor = DateTime.Now.ToString().Substring(0, 11);
+
+            Console.WriteLine(dataFor);
+
+
+
+            Email email = new Email();    
             
-
-            var dataFor = DateTime.Now;          
-                      
-
-            Email email = new Email();            
             email.SendEmail(new List<string> { $"{ngo.Email}" }, 
-                "Um novo voluntario se inscreveu em seu anuncio!", 
-                @$"{userEntity.Name} acabou de se inscrever em seu anuncio entitulado de 
-                    {ads.Title} em {dataFor}. Esse anuncio expira em {ads.Expires}");
+               "Um novo voluntario se inscreveu em seu anuncio!", 
+               @$"{userEntity.Name} acabou de se inscrever em seu anuncio entitulado de: 
+                   {ads.Title}, em {dataFor}. O email para contado de {userEntity.Name}
+                    é: {userEntity.Email}. Esse anuncio expira em {ads.Expires}");
         }
 
         public async Task Delete(int adsId)

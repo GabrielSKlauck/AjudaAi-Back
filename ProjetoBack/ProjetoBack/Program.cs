@@ -10,7 +10,7 @@ using Configuration = Rest.Infrastructure.Configuration;
 using ProjetoBack.Contracts.Repository;
 using ProjetoBack.Repository;
 using ProjetoBack.Infrastructure;
-
+using System.Security.Cryptography;
 
 var builder = WebApplication.CreateBuilder(args);
 

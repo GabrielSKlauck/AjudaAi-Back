@@ -52,6 +52,12 @@ namespace Rest.Controllers
             return Ok(await _ngoRepository.GetByCausesId(id));
         }
 
+        [HttpGet("GetByName/{NgoName}")]
+        public async Task<IActionResult> GetByName(string NgoName)
+        {
+            return Ok(await _ngoRepository.GetByName(NgoName));
+        }
+
         [Authorize(Roles = "admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)

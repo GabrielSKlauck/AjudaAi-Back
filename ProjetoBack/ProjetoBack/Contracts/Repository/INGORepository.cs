@@ -15,6 +15,8 @@ namespace Rest.Contracts.Repository
 
         Task<IEnumerable<NGOEntity>> GetByCausesId(int id);
 
+        Task<IEnumerable<NGOEntity>> GetByName(string NgoName);
+
         Task Delete(int id);
 
         Task<NGOTokenDTO> Login(NGOLoginDTO ngo);
