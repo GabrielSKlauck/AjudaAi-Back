@@ -48,6 +48,21 @@ namespace Rest.Repository
             await Execute(sql, new { adsId});
         }
 
+        public async Task Finalizar(int adsId)
+        {            
+            string sql = "SELECT U.* FROM USER U, USER_ADS A WHERE A.UserId = U.ID AND A.AdsId = @adsId";      
+            List<UserEntity> listaUsuarios = (List<UserEntity>)await GetConnection().QueryAsync<UserEntity>(sql, new {adsId});
+
+            List<AchievementsEntity> listaConquistas; //= await GetConnection().QueryAsync<AchievementsEntity>(sql, new { id} ); 
+            for (int i = 0; i < listaUsuarios.Count; i++)
+            {
+                sql = $@"SELECT a.* FROM achievements a WHERE NOT EXISTS 
+                        (SELECT 1 FROM achievements_user au WHERE au.AchievementsId = a.id AND au.userid = {listaUsuarios[i].Id})";
+                listaConquistas.Add((AchievementsEntity) await GetConnection().QueryAsync<AchievementsEntity>(sql));
+            }
+            
+        }
+
         public async Task<IEnumerable<UserAdsEntity>> Get()
         {
             string sql = "SELECT * FROM USER_ADS";

@@ -45,5 +45,12 @@ namespace Rest.Controllers
         {
             return Ok(await _userAdsRepository.GetByUserIdAdsId(userAds));
         }
+
+        [HttpPost("Finalizar/{adsId}")]
+        public async Task<IActionResult> Finalizar(int adsId)
+        {
+            await _userAdsRepository.Finalizar(adsId);
+            return Ok();
+        }
     }
 }

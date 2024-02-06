@@ -13,6 +13,6 @@ namespace Rest.Contracts.Repository
 
         Task<IEnumerable<UserAdsEntity>> GetByUserIdAdsId(UserAdsEntity userAds);
 
-        
+        Task Finalizar(int adsId);
     }
 }

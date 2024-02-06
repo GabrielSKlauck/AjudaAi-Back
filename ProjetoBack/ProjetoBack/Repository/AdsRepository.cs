@@ -57,6 +57,6 @@ namespace Rest.Repository
         {
             string sql = "SELECT * FROM ADS WHERE NGO_ID = @id";
             return await GetConnection().QueryAsync<AdsEntity>(sql, new {id});
-        }
+        }       
     }
 }
