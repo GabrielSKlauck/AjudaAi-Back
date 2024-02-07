@@ -18,5 +18,13 @@ namespace Rest.Infrastructure
                 return await con.ExecuteAsync(sql, obj);
             }
         }
+
+        protected async Task ExecuteOnly(string sql)
+        {
+            using (MySqlConnection con = GetConnection())
+            {
+                await con.ExecuteAsync(sql);
+            }
+        }
     }
 }

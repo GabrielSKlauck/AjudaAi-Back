@@ -54,17 +54,22 @@ namespace Rest.Repository
             string sql = "SELECT U.* FROM USER U, USER_ADS A WHERE A.UserId = U.ID AND A.AdsId = @adsId";      
             List<UserEntity> listaUsuarios = (List<UserEntity>)await GetConnection().QueryAsync<UserEntity>(sql, new {adsId});
 
-            List<AchievementsProgressionEntity> listaConquistas = new List<AchievementsProgressionEntity>; 
+            List<AchievementsProgressionEntity> listaConquistas = new List<AchievementsProgressionEntity>(); 
             
             for (int i = 0; i < listaUsuarios.Count; i++)
             {
                 sql = $@"SELECT * FROM Achievements_Progression WHERE user_Id = {listaUsuarios[i].Id}";
                 listaConquistas.Add((AchievementsProgressionEntity) await GetConnection().QueryAsync<AchievementsProgressionEntity>(sql));
 
+                int qtdRequerida;
+                
                 for (int j = 0; j < listaConquistas.Count; j++)
                 {
-                    sql = $@"UPDATE Achievements_Progression SET Score = {listaConquistas[j].Score + 1} WHERE Id = {listaConquistas[j].Id}";
-                    await Execute(sql);  
+                    listaConquistas[j].Score++;
+                    qtdRequerida = Int32.Parse(listaConquistas[j].Acronym.Replace("C", "").Replace("T", ""));
+                    
+                    
+
                 }
             }
             
