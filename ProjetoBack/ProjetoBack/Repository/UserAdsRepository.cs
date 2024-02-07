@@ -1,4 +1,5 @@
 using Dapper;
+using ProjetoBack.Entity;
 using ProjetoBack.Infrastructure;
 using Rest.Contracts.Repository;
 using Rest.DTO;
@@ -53,12 +54,18 @@ namespace Rest.Repository
             string sql = "SELECT U.* FROM USER U, USER_ADS A WHERE A.UserId = U.ID AND A.AdsId = @adsId";      
             List<UserEntity> listaUsuarios = (List<UserEntity>)await GetConnection().QueryAsync<UserEntity>(sql, new {adsId});
 
-            List<AchievementsEntity> listaConquistas; //= await GetConnection().QueryAsync<AchievementsEntity>(sql, new { id} ); 
+            List<AchievementsProgressionEntity> listaConquistas = new List<AchievementsProgressionEntity>; 
+            
             for (int i = 0; i < listaUsuarios.Count; i++)
             {
-                sql = $@"SELECT a.* FROM achievements a WHERE NOT EXISTS 
-                        (SELECT 1 FROM achievements_user au WHERE au.AchievementsId = a.id AND au.userid = {listaUsuarios[i].Id})";
-                listaConquistas.Add((AchievementsEntity) await GetConnection().QueryAsync<AchievementsEntity>(sql));
+                sql = $@"SELECT * FROM Achievements_Progression WHERE user_Id = {listaUsuarios[i].Id}";
+                listaConquistas.Add((AchievementsProgressionEntity) await GetConnection().QueryAsync<AchievementsProgressionEntity>(sql));
+
+                for (int j = 0; j < listaConquistas.Count; j++)
+                {
+                    sql = $@"UPDATE Achievements_Progression SET Score = {listaConquistas[j].Score + 1} WHERE Id = {listaConquistas[j].Id}";
+                    await Execute(sql);  
+                }
             }
             
         }
