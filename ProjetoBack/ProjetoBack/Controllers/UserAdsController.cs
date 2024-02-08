@@ -45,5 +45,6 @@ namespace Rest.Controllers
         {
             return Ok(await _userAdsRepository.GetByUserIdAdsId(userAds));
         }
+
     }
 }

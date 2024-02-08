@@ -1,4 +1,5 @@
 using Dapper;
+using ProjetoBack.Entity;
 using ProjetoBack.Infrastructure;
 using Rest.Contracts.Repository;
 using Rest.DTO;
@@ -47,6 +48,8 @@ namespace Rest.Repository
             string sql = $"DELETE FROM USER_ADS WHERE UserId = @UserId AND AdsId = @adsId";
             await Execute(sql, new { adsId});
         }
+
+        
 
         public async Task<IEnumerable<UserAdsEntity>> Get()
         {
