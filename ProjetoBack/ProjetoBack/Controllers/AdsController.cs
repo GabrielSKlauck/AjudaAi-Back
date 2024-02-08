@@ -66,6 +66,12 @@ namespace Rest.Controllers
             return Ok();
         }
 
-        
+        [HttpPost("Finalizar/{adsId}")]
+        public async Task<IActionResult> Finalizar(int adsId)
+        {
+            await _adsRepository.Finalizar(adsId);
+            return Ok();
+        }
+
     }
 }

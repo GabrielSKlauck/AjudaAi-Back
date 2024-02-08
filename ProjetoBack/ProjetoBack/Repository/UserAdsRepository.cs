@@ -49,58 +49,7 @@ namespace Rest.Repository
             await Execute(sql, new { adsId});
         }
 
-        public async Task Finalizar(int adsId)
-        {            
-            string sql = "SELECT U.* FROM USER U, USER_ADS A WHERE A.UserId = U.ID AND A.AdsId = @adsId";      
-            List<UserEntity> listaUsuarios = (List<UserEntity>)await GetConnection().QueryAsync<UserEntity>(sql, new {adsId});
-
-            
-
-            for (int i = 0; i < listaUsuarios.Count; i++)
-            {
-
-                sql = $@"SELECT * FROM Achievements_Progression WHERE user_Id = {listaUsuarios[i].Id}";
-
-                List<AchievementsProgressionEntity> listaConquistas = (List<AchievementsProgressionEntity>)await GetConnection().QueryAsync<AchievementsProgressionEntity>(sql);
-
-                //TESTE COMPLETAMENTE O METODO
-
-                int qtdRequerida;
-                
-                for (int j = 0; j < listaConquistas.Count; j++)
-                {
-                    listaConquistas[j].Score++;
-                    qtdRequerida = Int32.Parse(listaConquistas[j].Acronym.Replace("C", "").Replace("T", ""));
-
-                    if (listaConquistas[j].Score == qtdRequerida)
-                    {
-                        
-                        sql = $"SELECT Id FROM achievements WHERE Acronym LIKE '{listaConquistas[j].Acronym}'";
-                        int idConquista = await GetConnection().QueryFirstAsync<Int32>(sql);
-
-                        sql = $"INSERT INTO achievements_user(AchievementsId, UserId) VALUES({idConquista},{listaUsuarios[i].Id})";
-                        await ExecuteOnly(sql);
-
-                        sql = $"DELETE FROM Achievements_Progression WHERE id = {listaConquistas[j].Id}";
-                        await ExecuteOnly(sql);
-                        
-                    }
-                    else
-                    {
-                        sql = $"UPDATE Achievements_Progression SET Score = {listaConquistas[j].Score} WHERE Id = {listaConquistas[j].Id}";
-                        await ExecuteOnly(sql);
-                    }
-
-                }
-            }
-
-            sql = $"DELETE FROM User_Ads WHERE AdsId = @adsId";
-            await Execute(sql, new { adsId });
-
-            sql = $"DELETE FROM Ads WHERE Id = @adsId";
-            await Execute(sql, new { adsId });
-
-        }
+        
 
         public async Task<IEnumerable<UserAdsEntity>> Get()
         {
