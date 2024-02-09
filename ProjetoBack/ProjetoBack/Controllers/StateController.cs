@@ -21,5 +21,11 @@ namespace Rest.Controllers
         {
             return Ok(await _stateRepository.Get());
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await _stateRepository.GetById(id));
+        }
     }
 }

@@ -7,5 +7,7 @@ namespace Rest.Contracts.Repository
         Task<IEnumerable<CityEntity>> Get();
 
         Task<IEnumerable<CityEntity>> GetByState(int id);
+
+        Task<CityEntity> GetById(int id);
     }
 }
