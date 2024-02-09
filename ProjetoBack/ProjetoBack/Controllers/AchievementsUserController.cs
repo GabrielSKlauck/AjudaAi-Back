@@ -34,13 +34,13 @@ namespace Rest.Controllers
             return Ok();
         }
 
-        [HttpGet("ConquistasCompletas{userId}")]
+        [HttpGet("ConquistasCompletas/{userId}")]
         public async Task<IActionResult> GetComplete(int userId)
         {
             return Ok(await _achievementsUserRepository.GetAchievementsCompletedByUserId(userId));
         }
 
-        [HttpGet("ConquistasIncompletas{userId}")]
+        [HttpGet("ConquistasIncompletas/{userId}")]
         public async Task<IActionResult> GetIncomplete(int userId)
         {
             return Ok(await _achievementsUserRepository.GetAchievementsIncompleteByUserId(userId));
