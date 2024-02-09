@@ -58,6 +58,12 @@ namespace Rest.Controllers
             return Ok(await _ngoRepository.GetByName(NgoName));
         }
 
+        [HttpGet("GetByEmail/{email}")]
+        public async Task<IActionResult> GetByEmail(string email)
+        {
+            return Ok(await _ngoRepository.GetByEmail(email));
+        }
+
         [Authorize(Roles = "admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)

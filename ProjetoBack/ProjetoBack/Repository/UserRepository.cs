@@ -40,6 +40,18 @@ namespace Rest.Repository
             return await GetConnection().QueryAsync<UserEntity>(sql);
         }
 
+        public async Task<UserEntity> GetById(int id)
+        {
+            string sql = "SELECT * FROM USER WHERE Id = @id";
+            return await GetConnection().QueryFirstAsync<UserEntity>(sql, new {id});
+        }
+
+        public async Task<UserEntity> GetByEmail(string email)
+        {
+            string sql = $"SELECT * FROM USER WHERE EMAIL LIKE '{email}'";
+            return await GetConnection().QueryFirstAsync<UserEntity>(sql, new {email});
+        }
+
         public async Task Update(UserEntity user)
         {
             string sql = @"UPDATE USER SET Name = @Name,

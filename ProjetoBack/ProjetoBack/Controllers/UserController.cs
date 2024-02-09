@@ -39,6 +39,18 @@ namespace Rest.Controllers
             return Ok(await _userRepository.Get());
         }
 
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await _userRepository.GetById(id));
+        }
+
+        [HttpGet("GetByEmail/{email}")]
+        public async Task<IActionResult> GetByEmail(string email)
+        {
+            return Ok(await _userRepository.GetByEmail(email));
+        }
+
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
