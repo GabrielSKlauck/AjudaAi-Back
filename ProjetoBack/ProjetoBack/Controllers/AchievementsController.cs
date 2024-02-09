@@ -19,6 +19,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "master")]
         public async Task<IActionResult> Add(AchievementsDTO entity)
         {
             await _achievementsRepository.Add(entity);
@@ -26,6 +27,7 @@ namespace Rest.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "master")]
         public async Task<IActionResult> Delete(int id)
         {
             await _achievementsRepository.Delete(id);
@@ -45,6 +47,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "master")]
         public async Task<IActionResult> Update(AchievementsEntity entity)
         {
             await _achievementsRepository.Update(entity);
@@ -52,6 +55,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut("UpdateDescription")]
+        [Authorize(Roles = "master")]
         public async Task<IActionResult> UpdateDescription(AchievementsEntity entity)
         {
             await _achievementsRepository.UpdateDescription(entity);

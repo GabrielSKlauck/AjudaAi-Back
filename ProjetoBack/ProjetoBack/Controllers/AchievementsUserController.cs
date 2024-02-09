@@ -19,6 +19,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "master")]
         public async Task<IActionResult> Add(AchievementsUserDTO dto)
         {
             await _achievementsUserRepository.Add(dto);
@@ -26,6 +27,7 @@ namespace Rest.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "master")]
         public async Task<IActionResult> Delete(AchievementsUserDTO dto)
         {
             await _achievementsUserRepository.Delete(dto);
