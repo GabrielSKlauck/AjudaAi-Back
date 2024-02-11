@@ -12,7 +12,7 @@ namespace Rest.Repository
 
         public async Task Add(AchievementsUserDTO dto)
         {
-            string sql = @"INSERT INTO ACHIEVEMENTS_USER(AchievementsId, UserId)
+            string sql = $@"INSERT INTO ACHIEVEMENTS_USER(AchievementsId, UserId)
                             VALUES(@AchievementsId, @UserId)";
             await Execute(sql, dto);
         }
