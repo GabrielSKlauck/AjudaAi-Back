@@ -12,9 +12,6 @@ using ProjetoBack.Repository;
 using ProjetoBack.Infrastructure;
 using System.Security.Cryptography;
 
-DateTime date = DateTime.Today;
-Console.WriteLine(date);
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

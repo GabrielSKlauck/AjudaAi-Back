@@ -89,7 +89,8 @@ namespace Rest.Repository
                         sql = $"SELECT Id FROM achievements WHERE Acronym LIKE '{listaConquistas[j].Acronym}'";
                         int idConquista = await GetConnection().QueryFirstAsync<Int32>(sql);
 
-                        sql = $"INSERT INTO achievements_user(AchievementsId, UserId) VALUES({idConquista},{listaUsuarios[i].Id})";
+                        sql = @$"INSERT INTO achievements_user(AchievementsId, UserId, CompletionDate) 
+                                VALUES({idConquista},{listaUsuarios[i].Id}, current_date())";
                         await ExecuteOnly(sql);
 
                         sql = $"DELETE FROM Achievements_Progression WHERE id = {listaConquistas[j].Id}";
@@ -115,7 +116,8 @@ namespace Rest.Repository
 
                 try
                 {
-                    sql = $"INSERT INTO Achievements_User(AchievementsId, UserId) VALUES({conquistaId}, {listaUsuarios[i].Id})";
+                    sql = @$"INSERT INTO Achievements_User(AchievementsId, UserId, CompletionDate) 
+                            VALUES({conquistaId}, {listaUsuarios[i].Id}, current_date())";
                     await ExecuteOnly(sql);
                 }
                 catch (Exception ex) { }

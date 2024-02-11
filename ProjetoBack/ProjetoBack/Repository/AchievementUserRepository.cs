@@ -12,8 +12,8 @@ namespace Rest.Repository
 
         public async Task Add(AchievementsUserDTO dto)
         {
-            string sql = $@"INSERT INTO ACHIEVEMENTS_USER(AchievementsId, UserId)
-                            VALUES(@AchievementsId, @UserId)";
+            string sql = $@"INSERT INTO ACHIEVEMENTS_USER(AchievementsId, UserId, CompletionDate)
+                            VALUES(@AchievementsId, @UserId, current_date())";
             await Execute(sql, dto);
         }
 
@@ -26,7 +26,8 @@ namespace Rest.Repository
 
         public async Task<IEnumerable<AchievementsEntity>> GetAchievementsCompletedByUserId(int id)
         {
-            string sql = "select a.* from user u, achievements a, achievements_user au where @id = au.userid and au.AchievementsId = a.id group by a.id";
+            string sql = @"select a.* from user u, achievements a, achievements_user au 
+                        where @id = au.userid and au.AchievementsId = a.id group by a.id";
             return await GetConnection().QueryAsync<AchievementsEntity>(sql, new { id });
         }
 
