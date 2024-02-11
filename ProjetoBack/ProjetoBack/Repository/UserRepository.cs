@@ -64,6 +64,17 @@ namespace Rest.Repository
             await Execute(sql, user);
         }
 
+        public async Task ShortUpdate(UserUpdateEntity user)
+        {
+            string sql = @"UPDATE USER SET Name = @Name,
+                                        Email = @Email,
+                                        Role = 'Voluntario',
+                                        CityId = @CityId,
+                                        CityStateId = @CityStateId
+                                        WHERE Id = @Id";
+            await Execute(sql, user);
+        }
+
         public async Task<UserTokenDTO> Login(UserLoginDTO user)
         {
             var Cryptography = new Cryptography(SHA512.Create());

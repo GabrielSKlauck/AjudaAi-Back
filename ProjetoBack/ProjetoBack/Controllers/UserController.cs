@@ -33,6 +33,13 @@ namespace Rest.Controllers
             return Ok();
         }
 
+        [HttpPut("AtualizarConta")]
+        public async Task<IActionResult> AtualizarContaUser(UserUpdateEntity user)
+        {
+            await _userRepository.ShortUpdate(user);
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
