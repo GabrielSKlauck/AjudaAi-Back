@@ -6,5 +6,7 @@ namespace Rest.DTO
 
         public int UserId { get; set; }
 
+        public DateOnly data { get; set; }
+
     }
 }
