@@ -19,6 +19,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "master")]
         public async Task<IActionResult> Add(AchievementsUserDTO dto)
         {
             await _achievementsUserRepository.Add(dto);
@@ -26,19 +27,20 @@ namespace Rest.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "master")]
         public async Task<IActionResult> Delete(AchievementsUserDTO dto)
         {
             await _achievementsUserRepository.Delete(dto);
             return Ok();
         }
 
-        [HttpGet("ConquistasCompletas{userId}")]
+        [HttpGet("ConquistasCompletas/{userId}")]
         public async Task<IActionResult> GetComplete(int userId)
         {
             return Ok(await _achievementsUserRepository.GetAchievementsCompletedByUserId(userId));
         }
 
-        [HttpGet("ConquistasIncompletas{userId}")]
+        [HttpGet("ConquistasIncompletas/{userId}")]
         public async Task<IActionResult> GetIncomplete(int userId)
         {
             return Ok(await _achievementsUserRepository.GetAchievementsIncompleteByUserId(userId));

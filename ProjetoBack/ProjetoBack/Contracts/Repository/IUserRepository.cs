@@ -9,8 +9,14 @@ namespace Rest.Contracts.Repository
         Task Add(UserDTO user);
 
         Task<IEnumerable<UserEntity>> Get();
+
+        Task<UserEntity> GetById(int id);
+
+        Task<UserEntity> GetByEmail(string email);
      
         Task Update(UserEntity user);
+
+        Task ShortUpdate(UserUpdateEntity user);
 
         Task Delete(int id);
 

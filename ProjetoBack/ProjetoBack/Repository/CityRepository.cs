@@ -19,5 +19,11 @@ namespace Rest.Repository
             string sql = "SELECT * FROM CITY WHERE State_Id = @id";
             return await GetConnection().QueryAsync<CityEntity>(sql, new {id});
         }
+
+        public async Task<CityEntity> GetById(int id)
+        {
+            string sql = "SELECT * FROM CITY WHERE Id = @id";
+            return await GetConnection().QueryFirstAsync<CityEntity>(sql, new { id });
+        }
     }
 }
