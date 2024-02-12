@@ -42,8 +42,6 @@ builder.Services.AddTransient<IAchievementsRepository, AchievementRepository>();
 
 builder.Services.AddTransient<IAchievementsUserRepository, AchievementUserRepository>();
 
-builder.Services.AddTransient<IUserImageRepository, UserImageRepository>();
-
 builder.Services.AddTransient<IUserInterestRepository, UserInterestRepository>();
 
 builder.Services.AddCors();

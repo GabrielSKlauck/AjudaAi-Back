@@ -33,6 +33,13 @@ namespace Rest.Controllers
             return Ok();
         }
 
+        [HttpPut("UpdateProfileImage")]
+        public async Task<IActionResult> UpdateProfileImage(UserImageUpdateEntity user)
+        {
+            await _userRepository.UpdateProfileImage(user);
+            return Ok();
+        }
+
         [HttpPut("AtualizarConta")]
         public async Task<IActionResult> AtualizarContaUser(UserUpdateEntity user)
         {
@@ -57,6 +64,13 @@ namespace Rest.Controllers
         {
             return Ok(await _userRepository.GetByEmail(email));
         }
+
+        [HttpGet("GetImageById/{id}")]
+        public async Task<IActionResult> GetImageById(int id)
+        {
+            return Ok(await _userRepository.GetImageById(id));
+        }
+
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)

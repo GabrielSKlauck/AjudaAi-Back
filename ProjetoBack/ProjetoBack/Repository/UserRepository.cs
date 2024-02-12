@@ -52,6 +52,12 @@ namespace Rest.Repository
             return await GetConnection().QueryFirstAsync<UserEntity>(sql, new {email});
         }
 
+        public async Task<string> GetImageById(int id)
+        {
+            string sql = $"SELECT ProfileImage FROM USER WHERE Id = @id";
+            return await GetConnection().QueryFirstAsync<string>(sql, new {id});
+        }
+
         public async Task Update(UserEntity user)
         {
             string sql = @"UPDATE USER SET Name = @Name,
@@ -74,6 +80,14 @@ namespace Rest.Repository
                                         WHERE Id = @Id";
             await Execute(sql, user);
         }
+
+        public async Task UpdateProfileImage(UserImageUpdateEntity user)
+        {
+            string sql = @"UPDATE USER SET ProfileImage = @ProfileImage WHERE Id = @Id";
+            await Execute(sql, user);
+        }
+
+        
 
         public async Task<UserTokenDTO> Login(UserLoginDTO user)
         {
