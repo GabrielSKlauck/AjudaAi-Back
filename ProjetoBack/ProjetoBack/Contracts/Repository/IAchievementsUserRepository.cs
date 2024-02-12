@@ -12,6 +12,8 @@ namespace Rest.Contracts.Repository
         Task<IEnumerable<AchievementsEntity>> GetAchievementsCompletedByUserId(int id);
 
         Task<IEnumerable<AchievementsEntity>> GetAchievementsIncompleteByUserId(int id);
+
+        Task<AchievementsUserDTO> GetConquest(int userId, int achieId);
     
     }
 }

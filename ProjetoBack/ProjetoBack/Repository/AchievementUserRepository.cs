@@ -38,6 +38,12 @@ namespace Rest.Repository
                                                                             WHERE au.AchievementsId = a.id
                                                                             AND au.userid = @id)";
             return await GetConnection().QueryAsync<AchievementsEntity>(sql, new { id });
-        }    
+        }
+
+        public async Task<AchievementsUserDTO> GetConquest(int userId, int achieId)
+        {
+            string sql = @"SELECT * FROM Achievements_User WHERE AchievementsId = @achieId AND UserId = @userId";
+            return await GetConnection().QueryFirstAsync<AchievementsUserDTO>(sql, new {userId, achieId});
+        }
     }
 }

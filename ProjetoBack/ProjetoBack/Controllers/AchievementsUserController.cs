@@ -45,5 +45,11 @@ namespace Rest.Controllers
         {
             return Ok(await _achievementsUserRepository.GetAchievementsIncompleteByUserId(userId));
         }
+
+        [HttpGet("ConquistaUser/{userId}/{achieId}")]
+        public async Task<IActionResult> GetConquest(int userId, int achieId)
+        {
+            return Ok(await _achievementsUserRepository.GetConquest(userId, achieId));
+        }
     }
 }
