@@ -25,7 +25,7 @@ namespace Rest.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetByUserId(int id)
         {
             return Ok(await _userInterestRepository.GetByUserId(id));
