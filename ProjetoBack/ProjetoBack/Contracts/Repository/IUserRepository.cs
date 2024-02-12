@@ -13,12 +13,16 @@ namespace Rest.Contracts.Repository
         Task<UserEntity> GetById(int id);
 
         Task<UserEntity> GetByEmail(string email);
+
+        Task<string> GetImageById(int id);
      
         Task Update(UserEntity user);
 
+        Task UpdateProfileImage(UserImageUpdateEntity user);
+
         Task ShortUpdate(UserUpdateEntity user);
 
-        Task Delete(int id);
+        Task Delete(int id);   
 
         Task<UserTokenDTO> Login(UserLoginDTO user);
 
