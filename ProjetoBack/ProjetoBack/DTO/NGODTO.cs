@@ -1,4 +1,6 @@
-﻿namespace Rest.DTO
+﻿using System.Security.Policy;
+
+namespace Rest.DTO
 {
     public class NGODTO
     {
@@ -15,6 +17,8 @@
         public string Email { get; set; }
 
         public string Password { get; set; }
+
+        public string ProfileImage { get; set; }
 
         public string Role { get; set; }
     
