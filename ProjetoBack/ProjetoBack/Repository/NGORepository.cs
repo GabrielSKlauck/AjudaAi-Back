@@ -7,6 +7,7 @@ using Rest.Entity;
 using Infrastructure;
 using System.Security.Cryptography;
 using ProjetoBack.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Rest.Repository
 {

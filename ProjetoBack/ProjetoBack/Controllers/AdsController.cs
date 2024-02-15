@@ -67,6 +67,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost("Finalizar/{adsId}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Finalizar(int adsId)
         {
             await _adsRepository.Finalizar(adsId);

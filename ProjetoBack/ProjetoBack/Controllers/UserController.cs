@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rest.Contracts.Repository;
 using Rest.DTO;
@@ -27,6 +28,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles ="voluntario")]
         public async Task<IActionResult> Update(UserEntity user)
         {
             await _userRepository.Update(user);
@@ -34,6 +36,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut("UpdateProfileImage")]
+        [Authorize(Roles = "voluntario")]
         public async Task<IActionResult> UpdateProfileImage(UserImageUpdateEntity user)
         {
             await _userRepository.UpdateProfileImage(user);
@@ -41,6 +44,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut("AtualizarConta")]
+        [Authorize(Roles = "voluntario")]
         public async Task<IActionResult> AtualizarContaUser(UserUpdateEntity user)
         {
             await _userRepository.ShortUpdate(user);
@@ -73,6 +77,7 @@ namespace Rest.Controllers
 
 
         [HttpDelete]
+        [Authorize(Roles = "voluntario")]
         public async Task<IActionResult> Delete(int id)
         {
             await _userRepository.Delete(id);
