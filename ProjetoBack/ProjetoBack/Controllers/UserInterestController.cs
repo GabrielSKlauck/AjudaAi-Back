@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rest.Contracts.Repository;
 using Rest.DTO;
 using Rest.Entity;
 using Rest.Repository;
+using System.Data;
 
 namespace Rest.Controllers
 {
@@ -19,6 +21,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "voluntario")]
         public async Task<IActionResult> Add(UserInterestDTO user)
         {
             await _userInterestRepository.Add(user);
@@ -32,6 +35,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "voluntario")]
         public async Task<IActionResult> Update(UserInterestEntity user)
         {
             await _userInterestRepository.Update(user);
@@ -39,6 +43,7 @@ namespace Rest.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "voluntario")]
         public async Task<IActionResult> Delete(int id)
         {
             await _userInterestRepository.Delete(id);
