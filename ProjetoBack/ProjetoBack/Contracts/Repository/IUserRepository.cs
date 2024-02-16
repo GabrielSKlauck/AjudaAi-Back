@@ -8,11 +8,11 @@ namespace Rest.Contracts.Repository
     {
         Task Add(UserDTO user);
 
-        Task AddMaster(UserDTO master);
+        Task AddMaster(UserDTO admin);
 
         Task DeleteMaster(int id);
 
-        Task UpdateMaster(UserEntity master);
+        Task UpdateMaster(UserEntity admin);
 
         Task<IEnumerable<UserEntity>> GetAllAdmins();
 

@@ -137,17 +137,17 @@ namespace Rest.Controllers
 
         [HttpPost("AddMaster")]
        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> AddMaster(UserDTO master)
+        public async Task<IActionResult> AddMaster(UserDTO adm)
         {
-            await _userRepository.AddMaster(master);
+            await _userRepository.AddMaster(adm);
             return Ok();
         }
 
         [HttpPut("UpdateMaster")]
         [Authorize(Roles ="admin")]
-        public async Task<IActionResult> UpdateMaster(UserEntity master)
+        public async Task<IActionResult> UpdateMaster(UserEntity adm)
         {
-            await _userRepository.UpdateMaster(master);
+            await _userRepository.UpdateMaster(adm);
             return Ok();
         }
 

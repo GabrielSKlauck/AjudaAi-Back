@@ -161,14 +161,14 @@ namespace Rest.Repository
             }
         }
 
-        public async Task AddMaster(UserDTO master)
+        public async Task AddMaster(UserDTO adm)
         {
             var Cryptography = new Cryptography(SHA512.Create());
-            master.Password = Cryptography.CriptografarSenha(master.Password);
+            adm.Password = Cryptography.CriptografarSenha(adm.Password);
 
             string sql = @"INSERT INTO USER (Name, Email, Password, Role, CityId, CityStateId)
-                            VALUES(@Name, @Email, @Password, 'admin', @CityId, @CityStateId)";
-            await Execute(sql, master);
+                            VALUES(@Name, @Email, @Password, 'admin', 882, 7)";
+            await Execute(sql, adm);
         }
 
         public async Task DeleteMaster(int id)
@@ -177,15 +177,15 @@ namespace Rest.Repository
             await Execute(sql, new {id});
         }
 
-        public async Task UpdateMaster(UserEntity master)
+        public async Task UpdateMaster(UserEntity adm)
         {
             var Cryptography = new Cryptography(SHA512.Create());
-            master.Password = Cryptography.CriptografarSenha(master.Password);
+            adm.Password = Cryptography.CriptografarSenha(adm.Password);
             string sql = @"UPDATE USER SET Name = @Name,
                                            Email= @Email,
                                            Password = @Password
                                            Where Id = @Id";
-            await Execute(sql, master);
+            await Execute(sql, adm);
         }
 
         public async Task<IEnumerable<UserEntity>> GetAllAdmins()
