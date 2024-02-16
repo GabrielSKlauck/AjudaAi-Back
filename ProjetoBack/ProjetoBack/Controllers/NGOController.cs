@@ -17,7 +17,9 @@ namespace Rest.Controllers
             _ngoRepository = ngoRepository;
         }
 
-        [HttpPost]       
+        [HttpPost]
+        
+        
         public async Task<IActionResult> Add(NGODTO ngo)
         {
             await _ngoRepository.Add(ngo);

@@ -44,8 +44,6 @@ builder.Services.AddTransient<IAchievementsUserRepository, AchievementUserReposi
 
 builder.Services.AddTransient<IUserInterestRepository, UserInterestRepository>();
 
-builder.Services.AddTransient<IMasterRepository, MasterRepository>();
-
 builder.Services.AddCors();
 
 var key = Encoding.ASCII.GetBytes(Configuration.JWTSecret);
