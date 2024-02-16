@@ -4,6 +4,7 @@ using Rest.Contracts.Repository;
 using Rest.DTO;
 using Rest.Entity;
 using Rest.Repository;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Rest.Controllers
 {
@@ -132,6 +133,37 @@ namespace Rest.Controllers
         {
             await _userRepository.ChangePassword(senha);
             return Ok();
+        }
+
+        [HttpPost("AddMaster")]
+       // [Authorize(Roles = "master")]
+        public async Task<IActionResult> AddMaster(UserDTO master)
+        {
+            await _userRepository.AddMaster(master);
+            return Ok();
+        }
+
+        [HttpPut("UpdateMaster")]
+        [Authorize(Roles ="admin")]
+        public async Task<IActionResult> UpdateMaster(UserEntity master)
+        {
+            await _userRepository.UpdateMaster(master);
+            return Ok();
+        }
+
+        [HttpDelete("DeleteMaster")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteMaster(int id)
+        {
+            await _userRepository.DeleteMaster(id);
+            return Ok();
+        }
+
+        [HttpGet("GetAllAdmins")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> GetAllAdmins()
+        {
+            return Ok(await _userRepository.GetAllAdmins());
         }
     }
 }

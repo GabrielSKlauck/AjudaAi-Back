@@ -28,6 +28,9 @@ namespace Rest.Repository
             await Execute(sql, user);
         }
 
+
+       
+
         public async Task Delete(int id)
         {
             string sql = "DELETE FROM USER WHERE Id = @id";
@@ -60,6 +63,8 @@ namespace Rest.Repository
 
         public async Task Update(UserEntity user)
         {
+            var Cryptography = new Cryptography(SHA512.Create());
+            user.Password = Cryptography.CriptografarSenha(user.Password);
             string sql = @"UPDATE USER SET Name = @Name,
                                         Email = @Email,
                                         Password = @Password,
@@ -156,6 +161,37 @@ namespace Rest.Repository
             }
         }
 
-        
+        public async Task AddMaster(UserDTO master)
+        {
+            var Cryptography = new Cryptography(SHA512.Create());
+            master.Password = Cryptography.CriptografarSenha(master.Password);
+
+            string sql = @"INSERT INTO USER (Name, Email, Password, Role, CityId, CityStateId)
+                            VALUES(@Name, @Email, @Password, 'admin', @CityId, @CityStateId)";
+            await Execute(sql, master);
+        }
+
+        public async Task DeleteMaster(int id)
+        {
+            string sql = @"DELETE FROM USER WHERE ID = @Id";
+            await Execute(sql, new {id});
+        }
+
+        public async Task UpdateMaster(UserEntity master)
+        {
+            var Cryptography = new Cryptography(SHA512.Create());
+            master.Password = Cryptography.CriptografarSenha(master.Password);
+            string sql = @"UPDATE USER SET Name = @Name,
+                                           Email= @Email,
+                                           Password = @Password
+                                           Where Id = @Id";
+            await Execute(sql, master);
+        }
+
+        public async Task<IEnumerable<UserEntity>> GetAllAdmins()
+        {
+            string sql = "SELECT * FROM USER WHERE ROLE LIKE 'admin'";
+            return await GetConnection().QueryAsync<UserEntity>(sql);
+        }
     }
 }
