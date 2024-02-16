@@ -17,16 +17,14 @@ namespace Rest.Controllers
             _ngoRepository = ngoRepository;
         }
 
-        [HttpPost]
-        
-        
+        [HttpPost]       
         public async Task<IActionResult> Add(NGODTO ngo)
         {
             await _ngoRepository.Add(ngo);
             return Ok();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "ngo, admin")]
         [HttpPut]
         public async Task<IActionResult> Update(NGOEntity ngo)
         {
@@ -64,7 +62,7 @@ namespace Rest.Controllers
             return Ok(await _ngoRepository.GetByEmail(email));
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "ngo, admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

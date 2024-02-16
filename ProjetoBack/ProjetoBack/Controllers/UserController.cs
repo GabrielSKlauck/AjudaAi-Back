@@ -29,7 +29,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles ="voluntario")]
+        [Authorize(Roles ="voluntario, admin")]
         public async Task<IActionResult> Update(UserEntity user)
         {
             await _userRepository.Update(user);
@@ -37,7 +37,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut("UpdateProfileImage")]
-        [Authorize(Roles = "voluntario")]
+        [Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> UpdateProfileImage(UserImageUpdateEntity user)
         {
             await _userRepository.UpdateProfileImage(user);
@@ -45,7 +45,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut("AtualizarConta")]
-        [Authorize(Roles = "voluntario")]
+        [Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> AtualizarContaUser(UserUpdateEntity user)
         {
             await _userRepository.ShortUpdate(user);
@@ -78,7 +78,7 @@ namespace Rest.Controllers
 
 
         [HttpDelete]
-        [Authorize(Roles = "voluntario")]
+        [Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _userRepository.Delete(id);
@@ -136,7 +136,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost("AddMaster")]
-       // [Authorize(Roles = "master")]
+       [Authorize(Roles = "admin")]
         public async Task<IActionResult> AddMaster(UserDTO master)
         {
             await _userRepository.AddMaster(master);
