@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjetoBack.Contracts.Repository;
 using ProjetoBack.DTO;
 using Rest.Repository;
@@ -17,6 +18,7 @@ namespace ProjetoBack.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Add(UserCausesDTO user)
         {
             await _userCausesRepository.Add(user);
@@ -30,6 +32,7 @@ namespace ProjetoBack.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(UserCausesDTO user)
         {
             await _userCausesRepository.Delete(user);

@@ -7,6 +7,7 @@ using Rest.Entity;
 using Infrastructure;
 using System.Security.Cryptography;
 using ProjetoBack.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Rest.Repository
 {
@@ -66,8 +67,6 @@ namespace Rest.Repository
 
             string sql = "SELECT * FROM NGO WHERE Email = @Email AND Password = @Password";
             NGOEntity ngoLogin = await GetConnection().QueryFirstAsync<NGOEntity>(sql, ngo);
-
-            AdsRepository.NGO_Id = ngoLogin.Id;
 
             return new NGOTokenDTO
             {

@@ -10,11 +10,10 @@ namespace Rest.Repository
 {
     public class AdsRepository : Connection, IAdsRepository
     {      
-        public static int NGO_Id { get; set; }
         public async Task Add(AdsDTO ads)
         {
             string sql = @$"INSERT INTO ADS (Title, Description, Expires, Ngo_Id)
-                           VALUES(@Title, @Description, @Expires, {NGO_Id})";
+                           VALUES(@Title, @Description, @Expires, @NGO_Id)";
             await Execute(sql, ads);
                
         }
@@ -43,7 +42,7 @@ namespace Rest.Repository
                             Title = @Title,
                             Description = @Description,
                             Expires = @Expires,
-                            Ngo_Id = {NGO_Id}
+                            Ngo_Id = @Ngo_Id
                             WHERE Id = @Id";
 
              await Execute(sql, ads);

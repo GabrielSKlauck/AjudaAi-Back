@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rest.Contracts.Repository;
 using Rest.DTO;
@@ -19,6 +20,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Add(UserInterestDTO user)
         {
             await _userInterestRepository.Add(user);
@@ -32,6 +34,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Update(UserInterestEntity user)
         {
             await _userInterestRepository.Update(user);
@@ -39,6 +42,7 @@ namespace Rest.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _userInterestRepository.Delete(id);

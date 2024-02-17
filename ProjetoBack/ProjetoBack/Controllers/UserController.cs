@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Rest.Contracts.Repository;
 using Rest.DTO;
 using Rest.Entity;
 using Rest.Repository;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Rest.Controllers
 {
@@ -27,6 +30,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles ="voluntario, admin")]
         public async Task<IActionResult> Update(UserEntity user)
         {
             await _userRepository.Update(user);
@@ -34,6 +38,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut("UpdateProfileImage")]
+        [Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> UpdateProfileImage(UserImageUpdateEntity user)
         {
             await _userRepository.UpdateProfileImage(user);
@@ -41,6 +46,7 @@ namespace Rest.Controllers
         }
 
         [HttpPut("AtualizarConta")]
+        [Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> AtualizarContaUser(UserUpdateEntity user)
         {
             await _userRepository.ShortUpdate(user);
@@ -73,6 +79,7 @@ namespace Rest.Controllers
 
 
         [HttpDelete]
+        [Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _userRepository.Delete(id);
@@ -127,6 +134,37 @@ namespace Rest.Controllers
         {
             await _userRepository.ChangePassword(senha);
             return Ok();
+        }
+
+        [HttpPost("AddMaster")]
+       [Authorize(Roles = "admin")]
+        public async Task<IActionResult> AddMaster(UserDTO adm)
+        {
+            await _userRepository.AddMaster(adm);
+            return Ok();
+        }
+
+        [HttpPut("UpdateMaster")]
+        [Authorize(Roles ="admin")]
+        public async Task<IActionResult> UpdateMaster(UserEntity adm)
+        {
+            await _userRepository.UpdateMaster(adm);
+            return Ok();
+        }
+
+        [HttpDelete("DeleteMaster")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteMaster(int id)
+        {
+            await _userRepository.DeleteMaster(id);
+            return Ok();
+        }
+
+        [HttpGet("GetAllAdmins")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> GetAllAdmins()
+        {
+            return Ok(await _userRepository.GetAllAdmins());
         }
     }
 }

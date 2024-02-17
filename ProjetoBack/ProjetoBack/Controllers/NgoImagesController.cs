@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjetoBack.Contracts.Repository;
 using ProjetoBack.DTO;
 using ProjetoBack.Entity;
+using System.Data;
 
 namespace ProjetoBack.Controllers
 {
@@ -17,6 +19,7 @@ namespace ProjetoBack.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ngo, admin")]
         public async Task<IActionResult> Add(NgoImagesDTO image)
         {
             await _ngoImagesRepository.Add(image);
@@ -24,6 +27,7 @@ namespace ProjetoBack.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ngo, admin")]
         public async Task<IActionResult> Update(NgoImagesEntity image)
         {
             await _ngoImagesRepository.Update(image);
@@ -31,12 +35,14 @@ namespace ProjetoBack.Controllers
         }
 
         [HttpGet("{ngoId}")]
+        [Authorize(Roles = "ngo, admin")]
         public async Task<IActionResult> Get(int ngoId)
         {
             return Ok(await _ngoImagesRepository.Get(ngoId));
         }
 
         [HttpDelete]
+        [Authorize(Roles = "ngo, admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _ngoImagesRepository.Delete(id);
