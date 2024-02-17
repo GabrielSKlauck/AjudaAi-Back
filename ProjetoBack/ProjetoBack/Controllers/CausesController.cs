@@ -20,5 +20,10 @@ namespace Rest.Controllers
             return Ok(await _causesRepository.Get());
         }
 
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await _causesRepository.GetById(id));
+        }
     }
 }

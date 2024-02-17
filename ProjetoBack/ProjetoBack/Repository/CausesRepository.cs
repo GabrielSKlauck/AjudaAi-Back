@@ -12,5 +12,11 @@ namespace Rest.Repository
             string sql = "SELECT * FROM CAUSES";
             return await GetConnection().QueryAsync<CausesEntity>(sql);
         }
+
+        public async Task<CausesEntity> GetById(int id)
+        {
+            string sql = "SELECT * FROM CAUSES WHERE Id = @Id";
+            return await GetConnection().QueryFirstAsync<CausesEntity>(sql, new {id});
+        }
     }
 }
