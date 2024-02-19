@@ -10,7 +10,7 @@ namespace Rest.Repository
 {
     public class UserAdsRepository : Connection, IUserAdsRepository
     {
-        public static int UserId { get; set; }
+       
         public async Task Add(UserAdsDTO user)
         {
             string sql = $"INSERT INTO USER_ADS (UserId, AdsId) VALUES (@UserId, @AdsId)";
