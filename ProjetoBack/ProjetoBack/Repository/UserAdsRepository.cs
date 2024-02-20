@@ -5,6 +5,7 @@ using Rest.Contracts.Repository;
 using Rest.DTO;
 using Rest.Entity;
 using Rest.Infrastructure;
+using System.Globalization;
 
 namespace Rest.Repository
 {
@@ -29,10 +30,8 @@ namespace Rest.Repository
 
 
             string dataFor = DateTime.Now.ToString().Substring(0, 11);
-
-            Console.WriteLine(dataFor);
-
-
+            var dataIncricao = ads.Expires.ToString().Substring(0, 10);
+            Console.WriteLine(dataIncricao);
 
             Email email = new Email();    
             
@@ -40,7 +39,7 @@ namespace Rest.Repository
                "Um novo voluntario se inscreveu em seu anuncio!", 
                @$"{userEntity.Name} acabou de se inscrever em seu anuncio entitulado de: 
                    {ads.Title}, em {dataFor}. O email para contado de {userEntity.Name}
-                    é: {userEntity.Email}. Esse anuncio expira em {ads.Expires}");
+                    é: {userEntity.Email}. Esse anuncio expira em {dataIncricao}");
         }
 
         public async Task Delete(int adsId)
