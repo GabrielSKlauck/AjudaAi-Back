@@ -8,6 +8,8 @@
 
         public string Password { get; set; }
 
+        public DateTime Birthdate { get; set; }
+
         public string ProfileImage { get; set; }
 
         public string Role { get; set; }
