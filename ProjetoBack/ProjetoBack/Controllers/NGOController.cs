@@ -11,6 +11,7 @@ namespace Rest.Controllers
     public class NGOController : ControllerBase
     {
         private readonly INGORepository _ngoRepository;
+        public static bool tokenValidado;
 
         public NGOController(INGORepository ngoRepository)
         {
@@ -81,6 +82,41 @@ namespace Rest.Controllers
             {
                 return Unauthorized("Usuario ou senha invalidos");
             }
+        }
+
+        [HttpPost("SendTokenToEmail/{email}")]
+        public async Task<IActionResult> SendTokenToEmail(string email)
+        {
+            try
+            {
+                await _ngoRepository.SendTokenToEmail(email);
+                return Ok();
+            }catch (Exception e)
+            {
+                return Unauthorized("Email invalido");
+            }
+        }
+
+        [HttpPost("SendToken/{token}")]
+        public async Task<IActionResult> CheckToken(string token)
+        {
+            int tokenNum = (int)Int64.Parse(token);
+            await _ngoRepository.CheckToken(tokenNum);
+            if (tokenValidado)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("ChangePassword/{senha}")]
+        public async Task<IActionResult> ChangePassword(string senha)
+        {
+            await _ngoRepository.ChangePassword(senha);
+            return Ok();
         }
     }
 }

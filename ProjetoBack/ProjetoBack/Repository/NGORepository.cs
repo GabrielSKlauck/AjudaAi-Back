@@ -8,11 +8,14 @@ using Infrastructure;
 using System.Security.Cryptography;
 using ProjetoBack.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
+using Rest.Controllers;
 
 namespace Rest.Repository
 {
     public class NGORepository : Connection, INGORepository
     {
+        private static int savedToken;
+        private static int idNgo;
 
         public async Task Add(NGODTO ngo)
         {
@@ -90,7 +93,55 @@ namespace Rest.Repository
                                           WHERE Id = @Id";
             await Execute(sql, ngo);
         }
-       
+
+        public async Task SendTokenToEmail(string email)
+        {
+            if (await VerificarEmailBanco(email))
+            {
+                Random rand = new Random();
+                savedToken = rand.Next(10000);
+                Email emailObj = new Email();
+                emailObj.SendEmail(new List<string> { email }, "Token de verificação de email", $"Aqui esta o token de validação.\n\n{savedToken}. Se " +
+                    $"Voce não requisitou token de autentificação, pode ignorar este email.");
+            }
+        }
+
+        public async Task CheckToken(int token)
+        {
+            if (token == savedToken)
+            {
+                NGOController.tokenValidado = true;
+            }
+            else
+            {
+                NGOController.tokenValidado = false;
+            }
+        }
+
+        public async Task ChangePassword(string senha)
+        {
+            var Cryptography = new Cryptography(SHA512.Create());
+
+            senha = Cryptography.CriptografarSenha(senha);
+            string sql = $"UPDATE NGO SET PASSWORD = @senha WHERE ID = {idNgo}";
+            await Execute(sql, new { senha });
+        }
+
+        private async Task<bool> VerificarEmailBanco(string email)
+        {
+            string sql = "SELECT * FROM NGO WHERE Email = @email";
+            NGOEntity ngo = await GetConnection().QueryFirstAsync<NGOEntity>(sql, new { email });
+            idNgo = ngo.Id;
+
+            if (ngo != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
 

@@ -23,6 +23,10 @@ namespace Rest.Contracts.Repository
 
         Task<NGOTokenDTO> Login(NGOLoginDTO ngo);
 
-        
+        Task SendTokenToEmail(string email);
+
+        Task CheckToken(int token);
+
+        Task ChangePassword(string senha);
     }
 }
