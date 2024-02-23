@@ -35,7 +35,7 @@ namespace Rest.Repository
 
             localizacao = cidade.Name + ", ";
 
-            sql = "SELECT * FROM STATE WHERE Id = @id";
+            sql = $"SELECT * FROM STATE WHERE Id = {cidade.State_Id}";
             StateEntity state = await GetConnection().QueryFirstAsync<StateEntity>(sql, new { id });
 
             localizacao += state.Name;
