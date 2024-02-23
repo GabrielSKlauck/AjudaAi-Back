@@ -9,5 +9,7 @@ namespace Rest.Contracts.Repository
         Task<IEnumerable<CityEntity>> GetByState(int id);
 
         Task<CityEntity> GetById(int id);
+
+        Task<string> GetCityState(int id);
     }
 }

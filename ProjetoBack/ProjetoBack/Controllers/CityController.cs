@@ -34,5 +34,11 @@ namespace Rest.Controllers
         {
             return Ok(await _cityRepository.GetById(id));
         }
+
+        [HttpGet("GetLocalization/{id}")]
+        public async Task<IActionResult> GetLocalization(int id)
+        {
+            return Ok(await _cityRepository.GetCityState(id));
+        }
     }
 }
