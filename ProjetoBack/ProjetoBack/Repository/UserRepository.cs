@@ -118,7 +118,8 @@ namespace Rest.Repository
                 Random rand = new Random();
                 savedToken = rand.Next(10000);
                 Email emailObj = new Email();
-                emailObj.SendEmail(new List<string> { email }, "Token de verificação de email", $"Aqui esta o token de validação.\n\n{savedToken}");
+                emailObj.SendEmail(new List<string> { email }, "Token de verificação de email", $"Aqui esta o token de validação.\n\n{savedToken}. Se " +
+                    $"Voce não requisitou token de autentificação, pode ignorar este email.");
             }
         }
 
