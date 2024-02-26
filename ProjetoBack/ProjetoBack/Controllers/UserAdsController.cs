@@ -19,7 +19,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "voluntario, admin")]
+        //[Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> Add(UserAdsDTO user)
         {
             await _userAdsRepository.Add(user);
@@ -41,7 +41,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost("userIdAdsId")]
-        [Authorize(Roles = "voluntario, admin")]
+        //[Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> GetByUserIdAdsId(UserAdsEntity userAds)
         {
             return Ok(await _userAdsRepository.GetByUserIdAdsId(userAds));

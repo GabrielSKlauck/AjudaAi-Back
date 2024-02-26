@@ -40,6 +40,13 @@ namespace Rest.Repository
                @$"{userEntity.Name} acabou de se inscrever em seu anuncio entitulado de: 
                    {ads.Title}, em {dataFor}. O email para contado de {userEntity.Name}
                     é: {userEntity.Email}. Esse anuncio expira em {dataIncricao}");
+
+            email.SendEmail(new List<string> { $"{userEntity.Email}" },
+               "Voce se inscreveu em um anuncio",
+               @$"Voce decidiu ajuda a ONG {ngo.NgoName}, em seu anuncio entitualdo de {ads.Title} no dia de
+                {dataFor}. Obrigado por escolher nossa plataforma! Boa sorte.");
+
+
         }
 
         public async Task Delete(int adsId)
