@@ -20,7 +20,6 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> Add(UserInterestDTO user)
         {
             await _userInterestRepository.Add(user);
@@ -42,7 +41,6 @@ namespace Rest.Controllers
         }
 
         [HttpDelete("{id}")]
-       [Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _userInterestRepository.Delete(id);

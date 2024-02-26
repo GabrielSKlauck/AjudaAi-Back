@@ -18,8 +18,7 @@ namespace Rest.Controllers
             _userAdsRepository = userAdsRepository;
         }
 
-        [HttpPost]
-        //[Authorize(Roles = "voluntario, admin")]
+        [HttpPost]        
         public async Task<IActionResult> Add(UserAdsDTO user)
         {
             await _userAdsRepository.Add(user);
@@ -32,7 +31,6 @@ namespace Rest.Controllers
             return Ok(await _userAdsRepository.Get());
         }
 
-        [Authorize(Roles = "voluntario, admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(int adsId)
         {
@@ -41,7 +39,6 @@ namespace Rest.Controllers
         }
 
         [HttpPost("userIdAdsId")]
-        //[Authorize(Roles = "voluntario, admin")]
         public async Task<IActionResult> GetByUserIdAdsId(UserAdsEntity userAds)
         {
             return Ok(await _userAdsRepository.GetByUserIdAdsId(userAds));
