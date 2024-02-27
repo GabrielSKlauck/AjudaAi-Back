@@ -19,7 +19,7 @@ namespace Rest.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public async Task<IActionResult> Add(AchievementsUserDTO dto)
         {
             await _achievementsUserRepository.Add(dto);
