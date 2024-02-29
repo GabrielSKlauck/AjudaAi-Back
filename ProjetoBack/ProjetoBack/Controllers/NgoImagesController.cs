@@ -41,7 +41,7 @@ namespace ProjetoBack.Controllers
             return Ok(await _ngoImagesRepository.Get(ngoId));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         
         public async Task<IActionResult> Delete(int id)
         {
