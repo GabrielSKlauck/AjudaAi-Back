@@ -12,6 +12,8 @@ namespace Rest.Contracts.Repository
 
         Task UpdatePerfil(NgoUpdateEntity ngo);
 
+        Task UpdateLogo(NgoLogoUpdateEntity ngo);
+
         Task <IEnumerable<NGOEntity>> Get();
 
         Task <NGOEntity> GetById(int id);
