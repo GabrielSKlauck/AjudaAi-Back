@@ -106,6 +106,12 @@ namespace Rest.Repository
             await Execute(sql, ngo);
         }
 
+        public async Task UpdateLogo(NgoLogoUpdateEntity ngo)
+        {
+            string sql = @"UPDATE NGO SET ProfileImage = @ProfileImage WHERE Id = @Id";
+            await Execute(sql, ngo);    
+        }
+
         public async Task SendTokenToEmail(string email)
         {
             if (await VerificarEmailBanco(email))

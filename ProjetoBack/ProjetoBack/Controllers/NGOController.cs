@@ -40,7 +40,14 @@ namespace Rest.Controllers
             await _ngoRepository.UpdatePerfil(ngo);
             return Ok();
         }
-        
+
+        [HttpPut("Atualizarlogo")]
+        public async Task<IActionResult> UpdateLogoPerfil(NgoLogoUpdateEntity ngo)
+        {
+            await _ngoRepository.UpdateLogo(ngo);
+            return Ok();
+        }
+
         [HttpGet]  
         public async Task<IActionResult> Get(){           
            return Ok(await _ngoRepository.Get());                   
