@@ -1,4 +1,5 @@
-﻿using Rest.DTO;
+﻿using ProjetoBack.Entity;
+using Rest.DTO;
 using Rest.Entity;
 
 namespace Rest.Contracts.Repository
@@ -8,6 +9,8 @@ namespace Rest.Contracts.Repository
         Task Add(NGODTO ngo);
 
         Task Update(NGOEntity ngo);
+
+        Task UpdatePerfil(NgoUpdateEntity ngo);
 
         Task <IEnumerable<NGOEntity>> Get();
 
