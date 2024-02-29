@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using ProjetoBack.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Rest.Controllers;
+using ProjetoBack.Entity;
 
 namespace Rest.Repository
 {
@@ -94,6 +95,17 @@ namespace Rest.Repository
             await Execute(sql, ngo);
         }
 
+        public async Task UpdatePerfil(NgoUpdateEntity ngo)
+        {
+            string sql = @"UPDATE NGO SET NgoName = @NgoName,
+                                          Description = @Description,
+                                          CausesId = @CausesId,
+                                          CityId = @CityId,
+                                          CityStateId = @CityStateId
+                                          WHERE Id = @Id";
+            await Execute(sql, ngo);
+        }
+
         public async Task SendTokenToEmail(string email)
         {
             if (await VerificarEmailBanco(email))
@@ -142,6 +154,8 @@ namespace Rest.Repository
                 return false;
             }
         }
+
+        
     }
 }
 

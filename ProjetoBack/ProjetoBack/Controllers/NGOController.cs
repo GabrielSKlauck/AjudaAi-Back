@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoBack.Entity;
 using Rest.Contracts.Repository;
 using Rest.DTO;
 using Rest.Entity;
@@ -33,6 +34,12 @@ namespace Rest.Controllers
             return Ok();
         }
 
+        [HttpPut("AtualizarPerfil")]
+        public async Task<IActionResult> UpdatePerfil(NgoUpdateEntity ngo)
+        {
+            await _ngoRepository.UpdatePerfil(ngo);
+            return Ok();
+        }
         
         [HttpGet]  
         public async Task<IActionResult> Get(){           
