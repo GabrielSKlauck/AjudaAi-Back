@@ -65,6 +65,12 @@ namespace Rest.Controllers
             return Ok(await _ngoRepository.GetByCausesId(id));
         }
 
+        [HttpGet("StateId/{id}")]
+        public async Task<IActionResult> GetByStateId(int id)
+        {
+            return Ok(await _ngoRepository.GetByCausesId(id));
+        }
+
         [HttpGet("GetByName/{NgoName}")]
         public async Task<IActionResult> GetByName(string NgoName)
         {

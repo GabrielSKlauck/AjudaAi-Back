@@ -20,6 +20,8 @@ namespace Rest.Contracts.Repository
 
         Task<IEnumerable<NGOEntity>> GetByCausesId(int id);
 
+        Task<IEnumerable<NGOEntity>> GetByStateId(int id);
+
         Task<IEnumerable<NGOEntity>> GetByName(string NgoName);
 
         Task<NGOEntity> GetByEmail(string NgoName);
