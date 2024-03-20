@@ -13,7 +13,7 @@ using ProjetoBack.Infrastructure;
 using System.Security.Cryptography;
 
 Compactador comp = new Compactador();
-comp.Compactar("adda");
+comp.Compactar("adddddaaajjfffnnnttggghfnduirddda");
 
 var builder = WebApplication.CreateBuilder(args);
 
